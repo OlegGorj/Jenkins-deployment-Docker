@@ -41,5 +41,5 @@ install:
   - sudo mkdir /data
   - sudo mkdir /data/jenkins
   - sudo chown 1000 /data/jenkins
-  - sudo docker build -t ${REPO}/${IMAGE}:${TAG}
+  - sudo docker build -t ${REPO}/${IMAGE}:${TAG} .
   - sudo docker image push ${REPO}/${IMAGE}:${TAG}
