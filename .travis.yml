@@ -38,8 +38,8 @@ before_install:
 install:
   - git --version
   - git clone https://github.com/OlegGorj/Jenkins-deployment-Docker.git
-  - mkdir /data
-  - mkdir /data/jenkins
-  - chown 1000 /data/jenkins
-  - docker build -t ${REPO}/${IMAGE}:${TAG}
-  - docker image push ${REPO}/${IMAGE}:${TAG}
+  - sudo mkdir /data
+  - sudo mkdir /data/jenkins
+  - sudo chown 1000 /data/jenkins
+  - sudo docker build -t ${REPO}/${IMAGE}:${TAG} .
+  - sudo docker image push ${REPO}/${IMAGE}:${TAG}
