@@ -1,19 +1,45 @@
-sudo: required
-
 language: bash
 
-services:
-    - docker
+sudo: required
+
+services: docker
+
+env:
+  global:
+    - VERSION: "0.10.0"
+    - BUILD_DATE: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    - REPO: $DOCKER_USERNAME
+    - TAG_MINOR: ${VERSION%.*}
+    - TAG_MAJOR: ${VERSION%%.*}
+    - GIT_REPO_LINK: "https://github.com/OlegGorj/go-templates-collection.git#rest-api-service-cassandra:rest-api-to-cassandra"
+    - IMAGE: "jenkins"
+    - TAG: "latest"
+
+branches:
+  only:
+    - master
+    - /^(?i:deploy)-.*$/
+
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - cmake
 
 before_install:
-    - docker info
-    - docker version
+  - docker info
+  - docker version
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - sudo apt-get update
+  - sudo apt-get install git-all
 
 install:
-    - docker build -t oleggorj/jenkins
-
-script:
-    - docker image ls | grep jenkins
-
-after_script:
-    - docker ps -a
+  - git --version
+  - git clone https://github.com/OlegGorj/Jenkins-deployment-Docker.git
+  - mkdir /data
+  - mkdir /data/jenkins
+  - chown 1000 /data/jenkins
+  - docker build -t ${REPO}/${IMAGE}:${TAG}
+  - docker image push ${REPO}/${IMAGE}:${TAG}
