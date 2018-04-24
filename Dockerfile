@@ -51,4 +51,3 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 # add the jenkins user to the docker group so that sudo is not required to run docker commands
 RUN groupmod -g 1026 docker && gpasswd -a jenkins docker
 USER jenkins
-
