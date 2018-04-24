@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/OlegGorj/Jenkins-deployment-Docker.svg?branch=master)](https://travis-ci.org/OlegGorj/Jenkins-deployment-Docker)
+[![GitHub release](https://img.shields.io/github/release/OlegGorj/Jenkins-deployment-Docker.svg)](https://github.com/OlegGorj/Jenkins-deployment-Docker)
+[![GitHub issues](https://img.shields.io/github/issues/OlegGorj/Jenkins-deployment-Docker.svg)](https://github.com/OlegGorj/Jenkins-deployment-Docker/issues)
+
 # Jenkins deployment on Docker
 
 This project designed to implement and test the strategy of automating deployment of Jenkins (on 2 nodes)
